@@ -8,7 +8,6 @@ $query = mysqli_query($conectar, $sentencia);
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
-	<link rel="stylesheet" type="text/css" href="style.css">
 	<title>Valor comercial estimado</title>
 </head>
 <body>
@@ -20,8 +19,10 @@ $query = mysqli_query($conectar, $sentencia);
 		<legend>Seleccione una colonia</legend>
 		
 		<select name="colonia" size="0">
+			<?php while ($arreglo = mysqli_fetch_array($query)) { ?>
 
-			<option value="">
+			<option value="<?php echo $arreglo['id']?>"><?php echo $arreglo['nombre']?></option>
+			<?php } ?>
 		</select>
 	</fieldset>
 
@@ -29,22 +30,34 @@ $query = mysqli_query($conectar, $sentencia);
 	<fieldset class="formulario">
 		<legend>Información de propiedad</legend>
 		<label>Metros construcción</label>
-		<input type="text" name="Cantidad Metros Construcción" placeholder="Metros Construcción">
+		<input type="number" name="Cantidad Metros Construcción" placeholder="Metros Construcción" required>
 		<br>
 		<br>
 		<label>Metros cuadrados de terreno</label>
-		<input type="text" name="Cantidad Metros terreno" placeholder="Metros terreno">
+		<input type="number" name="Cantidad Metros terreno" placeholder="Metros terreno" requiered>
 	</fieldset>
 
 	<br>
 	<fieldset class="formulario">
 		<legend>Estado de la propiedad</legend>
 		<label>Calidad de acabados</label>
-		<select name="acabados" size="0"> </select>
+		<select name="selCom" size="1"> 
+			<option value="1" >Pésima</option>
+			<option value="2" >Mala</option>
+			<option value="3" >Media</option>
+			<option value="4" >Buena</option>
+			<option value="5" >Excelente</option>
+		</select>
+		<br>
 		<br>
 		<label>Conservación del inmueble</label>
-		<select name="Conservación" size="0"> </select>
-		
+		<select name="Conservación" size="0"> 
+			<option value="1" >Muy mala</option>
+			<option value="2" >Falta de mantenimiento</option>
+			<option value="3" >Aceptable</option>
+			<option value="4" >Buena</option>
+			<option value="5" >Nuevo</option>
+		</select>
 	</fieldset>
 
 </body>
